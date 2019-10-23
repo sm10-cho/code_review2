@@ -1,34 +1,37 @@
-#include "priority_queue.h"
+#include "priority_queue_sol.h"
+
+#include <cstddef>
+
+namespace project1 {
 
 template <>
-templatePriorityQueue<int>::templatePriorityQueue(){
+bool PriorityQueue<int>::Empty() const {
+  return storage_.empty();
 }
 
 template <>
-templatePriorityQueue<int>::~templatePriorityQueue(){
+int PriorityQueue<int>::Size() const {
+  return storage_.size();
 }
 
 template <>
-bool templatePriorityQueue<int>::empty() const{
-        return storage.empty();
+const int* PriorityQueue<int>::Top() const {
+  if (Empty()) {
+    return nullptr;
+  }
+  return &storage_.top();
 }
 
 template <>
-int templatePriorityQueue<int>::size() {
-        return storage.size();
+void PriorityQueue<int>::Pop() {
+  if (!Empty()) {
+    storage_.pop();
+  }
 }
 
 template <>
-const int& templatePriorityQueue<int>::top() const{
-        return storage.top();
+void PriorityQueue<int>::Push(const int& val) {
+  storage_.push(val);
 }
 
-template <>
-void templatePriorityQueue<int>::pop(){
-        storage.pop();
-}
-
-template <>
-void templatePriorityQueue<int>::push(const int& val){
-        storage.push(val);
-}
+}  // namespace project1
